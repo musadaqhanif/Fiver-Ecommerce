@@ -1,70 +1,84 @@
+
+"use client";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { Users, UserPlus, Package, MessageSquare } from "lucide-react";
 import svgPaths from "../imports/svg-3yquviczsh";
+import { getStatsData, StatCard as MockStatCard } from "../lib/mockData";
 
-interface StatCard {
-  title: string;
-  value: string;
-  change: string;
-  trend: "up" | "down";
+interface StatCard extends Omit<MockStatCard, 'icon'> {
   icon: React.ReactNode;
   iconBg: string;
 }
 
 export function StatsCards() {
-  const stats: StatCard[] = [
-    {
-      title: "Total Users",
-      value: "18,249",
-      change: "+8%",
-      trend: "up",
-      icon: (
-        <div className="relative shrink-0 size-[25px]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 25">
-            <path d={svgPaths.p3c43e300} fill="white" />
-          </svg>
-        </div>
-      ),
-      iconBg: "bg-blue-600",
-    },
-    {
-      title: "Active Vendors",
-      value: "1,247",
-      change: "+15%",
-      trend: "up",
-      icon: <UserPlus className="size-[25px] text-white" />,
-      iconBg: "bg-green-600",
-    },
-    {
-      title: "Active Orders",
-      value: "2,847",
-      change: "12%",
-      trend: "up",
-      icon: (
-        <div className="relative shrink-0 size-10">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
-            <rect fill="#6B21A8" height="40" rx="5" width="40" />
-            <path d={svgPaths.p1ea11d00} fill="white" />
-          </svg>
-        </div>
-      ),
-      iconBg: "",
-    },
-    {
-      title: "Support Chats",
-      value: "156",
-      change: "+5%",
-      trend: "up",
-      icon: <MessageSquare className="size-[25px] text-white" />,
-      iconBg: "bg-blue-600",
-    },
-  ];
+  const router = useRouter();
+  const mockStats = getStatsData();
+  
+  const getIconComponent = (iconName: string, iconBg: string) => {
+    switch (iconName) {
+      case "users":
+        return (
+          <div className="relative shrink-0 size-[25px]">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 25">
+              <path d={svgPaths.p3c43e300} fill="white" />
+            </svg>
+          </div>
+        );
+      case "user-plus":
+        return <UserPlus className="size-[25px] text-white" />;
+      case "package":
+        return (
+          <div className="relative shrink-0 size-10">
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 40 40">
+              <rect fill="#6B21A8" height="40" rx="5" width="40" />
+              <path d={svgPaths.p1ea11d00} fill="white" />
+            </svg>
+          </div>
+        );
+      case "message-square":
+        return <MessageSquare className="size-[25px] text-white" />;
+      default:
+        return <Users className="size-[25px] text-white" />;
+    }
+  };
+
+  const stats: StatCard[] = mockStats.map(stat => ({
+    ...stat,
+    icon: getIconComponent(stat.icon, stat.iconBg),
+    iconBg: stat.iconBg
+  }));
+
+  const handleStatClick = (statId: string) => {
+    console.log(`Clicked: ${statId}`);
+    
+    switch (statId) {
+      case "total-users":
+        console.log("Navigate to Users page");
+        router.push("/users");
+        break;
+      case "active-vendors":
+        console.log("Navigate to Vendors page");
+        router.push("/manage-vendor");
+        break;
+      case "active-orders":
+        console.log("Navigate to Orders page");
+        router.push("/orders");
+        break;
+      case "support-chats":
+        console.log("Navigate to Support page");
+        router.push("/support");
+        break;
+    }
+  };
 
   return (
     <div className="absolute box-border content-stretch flex flex-row gap-2 items-center justify-start left-[294px] p-0 top-[222px]">
       {stats.map((stat, index) => (
         <div
-          key={index}
-          className="bg-white box-border content-stretch flex flex-row gap-[75px] items-center justify-start px-[27px] py-4 relative rounded-[10px] shrink-0 w-[272px] border border-gray-200 shadow-[4px_4px_4px_0px_rgba(217,217,217,0.04)]"
+          key={stat.id}
+          className="bg-white box-border content-stretch flex flex-row gap-[75px] items-center justify-start px-[27px] py-4 relative rounded-[10px] shrink-0 w-[272px] border border-gray-200 shadow-[4px_4px_4px_0px_rgba(217,217,217,0.04)] cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105"
+          onClick={() => handleStatClick(stat.id)}
         >
           <div className="box-border content-stretch flex flex-col gap-px items-start justify-start p-0 relative shrink-0 w-[101px]">
             <div className="flex flex-col font-normal justify-center leading-[0] not-italic relative shrink-0 text-[12px] text-gray-500 text-left w-full">

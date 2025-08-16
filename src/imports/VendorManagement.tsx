@@ -341,7 +341,7 @@ function Frame68() {
         className="absolute border border-gray-200 border-solid inset-0 pointer-events-none rounded-[10px]"
       />
       <div className="flex flex-col font-['Inter:Regular',_sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-gray-600 text-left text-nowrap">
-        <p className="block leading-[27.281px] whitespace-pre">All Status</p>
+        <p className="block leading-[27.281px] whitespace-pre">All Status Musadaq</p>
       </div>
       <Img1 />
     </div>

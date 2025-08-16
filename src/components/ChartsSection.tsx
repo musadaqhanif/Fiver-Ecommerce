@@ -1,4 +1,8 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import svgPaths from "../imports/svg-3yquviczsh";
+import { getTopVendorsData, Vendor } from "../lib/mockData";
 
 interface ChartData {
   month: string;
@@ -9,6 +13,7 @@ interface ChartData {
 }
 
 export function ChartsSection() {
+  const router = useRouter();
   const chartData: ChartData[] = [
     { month: "Jan", sales: 57, users: 57, salesAmount: "$42,000", userCount: "1200 users" },
     { month: "Feb", sales: 40, users: 45, salesAmount: "$38,000", userCount: "1350 users" },
@@ -18,10 +23,26 @@ export function ChartsSection() {
     { month: "Jun", sales: 93, users: 92, salesAmount: "$42,000", userCount: "1200 users" },
   ];
 
+  const vendors = getTopVendorsData();
+
+  const handleVendorClick = (vendorId: string) => {
+    console.log(`Clicked vendor: ${vendorId}`);
+    // Navigate to vendor profile
+    router.push(`/manage-vendor?vendorId=${vendorId}`);
+  };
+
+  const handleChartClick = () => {
+    console.log("Navigate to analytics page");
+    router.push("/analytics");
+  };
+
   return (
     <div className="absolute box-border content-stretch flex flex-row gap-2.5 items-center justify-start left-[294px] p-0 top-[547px]">
       {/* Sales & User Growth Chart */}
-      <div className="bg-white relative rounded-[10px] shrink-0 w-[551px] border border-gray-200 shadow-[0px_4px_4px_0px_rgba(217,217,217,0.04)]">
+      <div 
+        className="bg-white relative rounded-[10px] shrink-0 w-[551px] border border-gray-200 shadow-[0px_4px_4px_0px_rgba(217,217,217,0.04)] cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105"
+        onClick={handleChartClick}
+      >
         <div className="box-border content-stretch flex flex-col gap-2.5 items-center justify-start overflow-clip pb-[19px] pl-[22px] pr-[35px] pt-[17px] relative w-[551px]">
           <div className="relative shrink-0 w-full">
             <div className="flex flex-row items-end relative size-full">
@@ -117,13 +138,12 @@ export function ChartsSection() {
           <p className="block leading-[36px] whitespace-pre">Top Performing Vendors</p>
         </div>
         <div className="box-border content-stretch flex flex-col gap-[15px] items-start justify-start p-0 relative shrink-0 w-[474px]">
-          {[
-            { rank: 1, name: "EcoCraft Artisans", rating: "4.9", products: "45 products", revenue: "$12,450" },
-            { rank: 2, name: "TechInnovate Solutions", rating: "4.7", products: "23 products", revenue: "$8,920" },
-            { rank: 3, name: "Organic Harvest Co", rating: "4.8", products: "67 products", revenue: "$15,670" },
-            { rank: 4, name: "Urban Fashion Hub", rating: "4.6", products: "34 products", revenue: "$9,340" },
-          ].map((vendor) => (
-            <div key={vendor.rank} className="box-border content-stretch flex flex-row items-center justify-between p-0 relative shrink-0 w-full">
+          {vendors.map((vendor) => (
+            <div 
+              key={vendor.id} 
+              className="box-border content-stretch flex flex-row items-center justify-between p-0 relative shrink-0 w-full cursor-pointer hover:bg-gray-50 transition-all duration-200 rounded-md p-2 hover:scale-105" 
+              onClick={() => handleVendorClick(vendor.id)}
+            >
               <div className="box-border content-stretch flex flex-row gap-[5px] items-start justify-start p-0 relative shrink-0">
                 <div className="bg-blue-100 box-border content-stretch flex flex-col gap-2.5 items-center justify-center px-2 py-0.5 relative rounded-[10px] shrink-0 size-5">
                   <div className="flex flex-col font-medium justify-center leading-[0] not-italic relative shrink-0 text-[10px] text-blue-600 text-left text-nowrap">

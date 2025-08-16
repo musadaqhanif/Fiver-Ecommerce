@@ -1,44 +1,34 @@
-import { Users, MessageSquare, UserPlus } from "lucide-react";
+"use client";
 
-interface ActivityItem {
-  id: string;
-  type: "warning" | "error" | "info" | "success";
-  message: string;
-  time: string;
+import { useRouter } from "next/navigation";
+import { Users, MessageSquare, UserPlus } from "lucide-react";
+import { getRecentActivityData, ActivityItem as MockActivityItem } from "../lib/mockData";
+
+interface ActivityItem extends MockActivityItem {
   icon: React.ReactNode;
 }
 
 export function RecentActivity() {
-  const activities: ActivityItem[] = [
-    {
-      id: "1",
-      type: "warning",
-      message: 'New vendor "EcoCraft Artisans" registered',
-      time: "2 hours ago",
-      icon: <Users className="size-[25px] text-orange-500" />,
-    },
-    {
-      id: "2",
-      type: "error",
-      message: "Support chat escalated by John Doe",
-      time: "3 hours ago",
-      icon: <MessageSquare className="size-[25px] text-red-500" />,
-    },
-    {
-      id: "3",
-      type: "info",
-      message: 'Vendor "TechInnovate" suspended for policy violation',
-      time: "2 hours ago",
-      icon: <Users className="size-[25px] text-blue-600" />,
-    },
-    {
-      id: "4",
-      type: "success",
-      message: "50 new users registered today",
-      time: "2 hours ago",
-      icon: <UserPlus className="size-6 text-green-600" />,
-    },
-  ];
+  const router = useRouter();
+  const mockActivities = getRecentActivityData();
+  
+  const getIconComponent = (iconName: string, type: string) => {
+    switch (iconName) {
+      case "users":
+        return <Users className="size-[25px] text-orange-500" />;
+      case "message-square":
+        return <MessageSquare className="size-[25px] text-red-500" />;
+      case "user-plus":
+        return <UserPlus className="size-6 text-green-600" />;
+      default:
+        return <Users className="size-[25px] text-orange-500" />;
+    }
+  };
+
+  const activities: ActivityItem[] = mockActivities.map(activity => ({
+    ...activity,
+    icon: getIconComponent(activity.icon, activity.type)
+  }));
 
   const getActivityStyles = (type: string) => {
     switch (type) {
@@ -70,6 +60,29 @@ export function RecentActivity() {
     }
   };
 
+  const handleActivityClick = (activityId: string) => {
+    console.log(`Clicked activity: ${activityId}`);
+    
+    switch (activityId) {
+      case "1":
+        console.log("Navigate to vendor details");
+        router.push("/manage-vendor?vendorId=ecocraft");
+        break;
+      case "2":
+        console.log("Navigate to support chat");
+        router.push("/support?chatId=john-doe");
+        break;
+      case "3":
+        console.log("Navigate to vendor management");
+        router.push("/manage-vendor?vendorId=techinnovate");
+        break;
+      case "4":
+        console.log("Navigate to user analytics");
+        router.push("/users?filter=new");
+        break;
+    }
+  };
+
   return (
     <div className="absolute bg-white box-border content-stretch flex flex-col gap-[19px] h-[378px] items-start justify-start left-[294px] px-[26px] py-[27px] rounded-[10px] top-[901px] w-[1112px] border border-gray-200 shadow-[0px_4px_4px_0px_rgba(217,217,217,0.04)]">
       <div className="flex flex-col font-medium justify-center leading-[0] not-italic relative shrink-0 text-[#000000] text-[18px] text-left text-nowrap">
@@ -79,7 +92,8 @@ export function RecentActivity() {
       {activities.map((activity) => (
         <div
           key={activity.id}
-          className={`box-border content-stretch flex flex-col gap-2.5 items-start justify-center pl-4 pr-[53px] py-[7px] relative rounded-[10px] shrink-0 w-[1038px] border ${getActivityStyles(activity.type)} shadow-[0px_4px_4px_0px_rgba(217,217,217,0.04)]`}
+          className={`box-border content-stretch flex flex-col gap-2.5 items-start justify-center pl-4 pr-[53px] py-[7px] relative rounded-[10px] shrink-0 w-[1038px] border ${getActivityStyles(activity.type)} shadow-[0px_4px_4px_0px_rgba(217,217,217,0.04)] cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105`}
+          onClick={() => handleActivityClick(activity.id)}
         >
           <div className="box-border content-stretch flex flex-row gap-2.5 items-center justify-start p-0 relative shrink-0">
             {activity.icon}
