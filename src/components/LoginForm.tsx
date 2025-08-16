@@ -38,48 +38,46 @@ export function LoginForm() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-lg">
+      <div className="w-full max-w-md">
         {/* Logo */}
         <Logo />
 
         {/* Welcome Text */}
-        <div className="text-center mb-8">
-          <h1 className="text-[40px] font-semibold text-[#121923] mb-4 leading-tight">
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-semibold text-[#121923] mb-2 leading-tight">
             Welcome Back to Gldcart
           </h1>
-          <p className="text-[18px] text-[#40434a] leading-normal">
-            Login to explore, customize, and shop unique creator-made
-            <br />
-            products.
+          <p className="text-sm text-[#40434a] leading-normal">
+            Login to explore, customize, and shop unique creator-made products.
           </p>
         </div>
 
         {/* Login Card */}
-        <Card className="bg-white rounded-[37px] shadow-[0px_9px_4px_0px_rgba(0,0,0,0.25)] border-neutral-100 p-8">
-          <CardContent className="space-y-6 p-0">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <Card className="bg-white rounded-2xl shadow-lg border-neutral-100 p-6">
+          <CardContent className="space-y-4 p-0">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Email Field */}
               <div className="space-y-2">
                 <Label
                   htmlFor="email"
-                  className="text-[18px] font-medium text-[#3f4247]"
+                  className="text-sm font-medium text-[#3f4247]"
                 >
                   Email
                 </Label>
                 <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                    <Mail className="size-5 text-[#989ba0]" />
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <Mail className="size-4 text-[#989ba0]" />
                   </div>
                   <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email"
-                    className="h-16 pl-12 rounded-[10px] border-[#e8e8e8] text-[20px] placeholder:text-[#989ba0] focus:ring-2 focus:ring-[#6241e5] focus:border-transparent"
+                    className="h-12 pl-10 rounded-lg border-[#e8e8e8] text-sm placeholder:text-[#989ba0] focus:ring-2 focus:ring-[#6241e5] focus:border-transparent"
                     {...register("email", { required: "Email is required" })}
                   />
                 </div>
                 {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email.message}</p>
+                  <p className="text-xs text-red-500">{errors.email.message}</p>
                 )}
               </div>
 
@@ -87,19 +85,19 @@ export function LoginForm() {
               <div className="space-y-2">
                 <Label
                   htmlFor="password"
-                  className="text-[18px] font-normal text-[#393b47]"
+                  className="text-sm font-normal text-[#393b47]"
                 >
                   Password
                 </Label>
                 <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                    <Lock className="size-5 text-[#989ba0]" />
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <Lock className="size-4 text-[#989ba0]" />
                   </div>
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    className="h-[67px] pl-12 pr-12 rounded-lg border-[#e8e8e8] text-[20px] placeholder:text-[#989ba0] focus:ring-2 focus:ring-[#6241e5] focus:border-transparent"
+                    className="h-12 pl-10 pr-10 rounded-lg border-[#e8e8e8] text-sm placeholder:text-[#989ba0] focus:ring-2 focus:ring-[#6241e5] focus:border-transparent"
                     {...register("password", {
                       required: "Password is required",
                     })}
@@ -107,17 +105,17 @@ export function LoginForm() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#989ba0] hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#989ba0] hover:text-gray-600"
                   >
                     {showPassword ? (
-                      <EyeOff className="size-5" />
+                      <EyeOff className="size-4" />
                     ) : (
-                      <Eye className="size-5" />
+                      <Eye className="size-4" />
                     )}
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="text-sm text-red-500">
+                  <p className="text-xs text-red-500">
                     {errors.password.message}
                   </p>
                 )}
@@ -125,7 +123,7 @@ export function LoginForm() {
 
               {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2">
                   <Checkbox
                     id="rememberMe"
                     className="border-[#8a8a8a] data-[state=checked]:bg-[#6241e5] data-[state=checked]:border-[#6241e5]"
@@ -133,14 +131,14 @@ export function LoginForm() {
                   />
                   <Label
                     htmlFor="rememberMe"
-                    className="text-[18px] font-normal text-[#393b47] cursor-pointer"
+                    className="text-sm font-normal text-[#393b47] cursor-pointer"
                   >
                     Remember me
                   </Label>
                 </div>
                 <button
                   type="button"
-                  className="text-[18px] font-normal text-[#443eaa] hover:underline"
+                  className="text-sm font-normal text-[#443eaa] hover:underline"
                 >
                   Forgot Password?
                 </button>
@@ -149,7 +147,7 @@ export function LoginForm() {
               {/* Login Button */}
               <Button
                 type="submit"
-                className="w-full h-16 bg-gradient-to-r from-[#6241e5] to-[#7a39e8] text-white text-[20px] font-medium rounded-[10px] hover:from-[#5a3dd1] hover:to-[#6f35d3] transition-all duration-200"
+                className="w-full h-12 bg-gradient-to-r from-[#6241e5] to-[#7a39e8] text-white text-sm font-medium rounded-lg hover:from-[#5a3dd1] hover:to-[#6f35d3] transition-all duration-200"
               >
                 Login
               </Button>
@@ -161,22 +159,22 @@ export function LoginForm() {
                 <div className="w-full border-t border-dashed border-[#efefef]"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-4 text-[15px] text-[#33383e]">
+                <span className="bg-white px-3 text-xs text-[#33383e]">
                   or
                 </span>
               </div>
             </div>
 
             {/* Social Login Buttons */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <Button
                 type="button"
                 variant="outline"
                 onClick={() => handleSocialLogin("facebook")}
-                className="w-full h-[71px] bg-white border-[#eaeaea] rounded-[11px] text-[20px] font-medium text-[#33383e] hover:bg-gray-50 transition-all duration-200"
+                className="w-full h-12 bg-white border-[#eaeaea] rounded-lg text-sm font-medium text-[#33383e] hover:bg-gray-50 transition-all duration-200"
               >
-                <div className="flex items-center justify-center space-x-3">
-                  <svg className="size-6" fill="none" viewBox="0 0 24 27">
+                <div className="flex items-center justify-center space-x-2">
+                  <svg className="size-4" fill="none" viewBox="0 0 24 27">
                     <path d={svgPaths.p121574c0} fill="#285CE6" />
                     <path d={svgPaths.p38169600} fill="#285CE6" />
                   </svg>
@@ -188,10 +186,10 @@ export function LoginForm() {
                 type="button"
                 variant="outline"
                 onClick={() => handleSocialLogin("google")}
-                className="w-full h-[71px] bg-white border-[#e8e8e8] rounded-[11px] text-[20px] font-medium text-[#33383e] hover:bg-gray-50 transition-all duration-200"
+                className="w-full h-12 bg-white border-[#e8e8e8] rounded-lg text-sm font-medium text-[#33383e] hover:bg-gray-50 transition-all duration-200"
               >
-                <div className="flex items-center justify-center space-x-3">
-                  <svg className="size-5" fill="none" viewBox="0 0 22 23">
+                <div className="flex items-center justify-center space-x-2">
+                  <svg className="size-4" fill="none" viewBox="0 0 22 23">
                     <path d={svgPaths.p11faa600} fill="#E74E50" />
                   </svg>
                   <span>Login with Google</span>
@@ -202,8 +200,8 @@ export function LoginForm() {
         </Card>
 
         {/* Sign Up Link */}
-        <div className="text-center mt-8">
-          <p className="text-[20px] font-medium text-[#4d4d55]">
+        <div className="text-center mt-6">
+          <p className="text-sm font-medium text-[#4d4d55]">
             Don&apos;t have an account?{" "}
             <button className="text-[#783ae8] hover:underline">Signup</button>
           </p>

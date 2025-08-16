@@ -42,11 +42,14 @@ function Frame8() {
 function Img() {
   return (
     <div className="relative shrink-0 size-[15.75px]" data-name="Img">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 16 16">
-        <g id="Img">
-          <path d={svgPaths.p3e632e00} fill="var(--fill-0, #6B7280)" id="Vector" />
-        </g>
-      </svg>
+     
+<Image
+  src="/products/p1.png"
+  alt="Product"
+  className="block size-full"
+  width={300}
+  height={300}
+/>
     </div>
   );
 }

@@ -64,7 +64,7 @@ export function AdminDashboard() {
         {/* Search Bar */}
         <div className="absolute top-[27px] translate-x-[-50%] left-[calc(50%+248px)]">
           <SearchComponent 
-            placeholder="Search order, products vendors...."
+            placeholder="Search order, products ...."
             onResultClick={handleSearchResultClick}
           />
         </div>
