@@ -1,7 +1,7 @@
 import svgPaths from "@/imports/svg-cdffa7his3";
-import imgImage110 from "figma:asset/ff4492426870dd7f0bc57524cbd0f240d4fb3674.png";
-import imgImage112 from "figma:asset/6321cb756e6cd3c80a3eb0fc612716e12970f8ee.png";
-import imgImage111 from "figma:asset/45f1c5e6635e370a935a687436b2e053e0c8d893.png";
+const imgImage110 = "/searchAndFilter/ff4492426870dd7f0bc57524cbd0f240d4fb3674.png";
+const imgImage112 = "/searchAndFilter/6321cb756e6cd3c80a3eb0fc612716e12970f8ee.png";
+const imgImage111 = "/searchAndFilter/45f1c5e6635e370a935a687436b2e053e0c8d893.png";
 
 function MageSearch() {
   return (
