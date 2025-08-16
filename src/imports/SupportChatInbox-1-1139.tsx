@@ -1,6 +1,6 @@
 import svgPaths from "./svg-plzfm5vcj8";
-import imgFrame39 from "figma:asset/0c26d887ed060b47018885c4c6847048f8a83758.png";
-import imgFrame40 from "figma:asset/1d05d59e2312732dd6546e4a1b3357770704b778.png";
+const imgFrame39 = "/chatSupport/0c26d887ed060b47018885c4c6847048f8a83758.png";
+const imgFrame40 = "/chatSupport/1d05d59e2312732dd6546e4a1b3357770704b778.png";
 
 function MageSearch() {
   return <div className="absolute left-[217px] size-6 top-[46px]" data-name="mage:search" />;
@@ -1062,7 +1062,7 @@ function Frame51() {
 function Frame52() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3.5 items-start justify-start p-0 relative shrink-0 w-[420px]">
-      <div className="flex flex-col font-['Poppins:Medium',_sans-serif] justify-center leading-[100.97%] not-italic relative shrink-0 text-[#000000] text-[0px] text-left text-nowrap whitespace-pre">
+      <div className="flex flex-col font-['Poppins:Medium',_sans-serif] justify-center leading-[normal] not-italic relative shrink-0 text-[#000000] text-[0px] text-left text-nowrap whitespace-pre">
         <p className="block mb-0 text-[20px]">EcoCraft Artisans</p>
         <p className="block font-['Poppins:Regular',_sans-serif] mb-0 text-[13px] text-gray-600">maria@ecocraft.com</p>
         <p className="block mb-0 text-[14px]">&nbsp;</p>
@@ -1218,7 +1218,7 @@ function Frame54() {
 function Frame55() {
   return (
     <div className="box-border content-stretch flex flex-col gap-3.5 items-start justify-start p-0 relative shrink-0 w-[420px]">
-      <div className="flex flex-col font-['Poppins:Medium',_sans-serif] justify-center leading-[100.97%] not-italic relative shrink-0 text-[#000000] text-[0px] text-left text-nowrap whitespace-pre">
+      <div className="flex flex-col font-['Poppins:Medium',_sans-serif] justify-center leading-[normal] not-italic relative shrink-0 text-[#000000] text-[0px] text-left text-nowrap whitespace-pre">
         <p className="block mb-0 text-[20px]">{`TechInnovate Solutions `}</p>
         <p className="block font-['Poppins:Regular',_sans-serif] mb-0 text-[13px] text-gray-600">
           david@techinnovate.com
